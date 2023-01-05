@@ -1,0 +1,26 @@
+.PostActions {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 12px;
+  position: absolute;
+  top: 25px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  width: 8rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  -webkit-box-shadow: 11px -12px 57px -52px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 11px -12px 57px -52px rgba(0, 0, 0, 0.75);
+  box-shadow: 11px -12px 57px -52px rgba(0, 0, 0, 0.75);
+}
+.list:hover {
+  cursor: pointer;
+  background-color: rgb(244, 244, 244);
+  border-radius: 5px;
+}
+.logo {
+  width: 1rem;
+  height: 1rem;
+}

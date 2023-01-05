@@ -1,0 +1,30 @@
+.Home{
+    position: relative;
+    display:grid;
+    justify-content: center;
+    grid-template-columns: 18rem auto 20rem;
+    gap: 1rem;
+}
+
+
+@media (max-width : 1175px){
+    .Home{
+        grid-template-columns: 18rem auto;
+        justify-content: center;
+    }
+    .RightSide{
+        display: none;
+    }
+}
+
+@media (max-width : 830px){
+    .Home{
+        grid-template-columns: auto;
+    }
+    .ProfileCard{
+        display: none;
+    }
+    .FollowersCard{
+        display: none;
+    }
+}

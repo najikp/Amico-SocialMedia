@@ -1,0 +1,31 @@
+.Profile{
+    position: relative;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 18rem auto 20rem;
+    gap:1rem;
+}
+
+.Profile-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+@media (max-width:1175px){
+    .Profile{
+        grid-template-columns: 18rem auto;
+    }
+}
+
+
+@media (max-width:830px){
+    .Profile{
+        grid-template-columns: auto;
+        justify-content: center;
+    }
+    .InfoCard, .LogoSearch{
+        display: none;
+    }
+}

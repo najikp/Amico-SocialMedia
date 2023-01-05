@@ -1,0 +1,60 @@
+.Notification{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 14rem;
+    height: 20rem;
+    margin: 4rem;
+    background-color:white;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    border-radius: 4px;
+}
+
+.notificatoinPart{
+    width: 14rem;
+    height: 18rem;
+    overflow-y: scroll;
+}
+
+.notlist{
+    list-style-type: none;
+    margin: 1rem;
+}
+
+.notifications{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.notifications>span:nth-child(1){
+    font-size: 12px;
+}
+
+.notifications>span:nth-child(2){
+    font-size: 8px;
+}
+
+.buttonPart{
+    text-align: center;
+    box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.5);
+}
+.buttonPart>button{
+    display: inline-block;
+    margin-top: .5rem;
+}
+.isEmpty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.isEmpty>h2{
+    font-size: large;
+    margin-top: 8rem;
+}
+
+.isEmpty>span{
+    font-size: 12px;
+}

@@ -1,0 +1,101 @@
+.Post{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: var(--cardColor);
+    border-radius: 1rem;
+    gap: 1rem;
+}
+
+.Post>img,
+.Post>video{
+    width: 100%;
+    max-height: 20rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.postReact{
+    display: flex;
+    align-items: flex-start;
+    gap:1.5rem;
+}
+.postHeader{
+    display: flex;
+    justify-content: space-between;
+}
+.namePart{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    gap: 0.3rem;
+}
+.namePart>img{
+    width: 2rem;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: var(--profileShadow);
+}
+
+.optionSide{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    cursor: pointer;
+}
+
+.likeAndComments{
+    display: flex;
+    justify-content: space-between;
+}
+.likeAndComments>span:nth-child(2){
+    justify-content: end;
+}
+.edit{
+    display: flex;
+    justify-content: center;
+}
+
+.edit>input{
+    background-color:var(--inputColor);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 13px;
+    border:none;
+    width:75%;
+    margin-right: 0.5rem;
+    outline: none;
+}
+
+
+.ps-button{
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 12px;
+}
+
+.Report{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    background-color:white;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+
+.reportForm{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.reportButton{
+    margin-top:10px ;
+    height: 1.8rem;
+}
