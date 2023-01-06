@@ -26,7 +26,7 @@ const Search = ({ searchKey }) => {
                 </Link>
               </span>
               <span>
-                <Link to={`/profile/${user._id}`}>@{user.username}</Link>
+                <Link to={`/profile/${user._id}`}>{user.username}</Link>
               </span>
             </div>
           </div>

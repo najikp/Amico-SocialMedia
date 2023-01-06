@@ -200,7 +200,7 @@ export const getTimelinePosts = async (req, res) => {
         $project: {
           allPosts: 1,
           "user.username": 1,
-          "user.fistname": 1,
+          "user.firstname": 1,
           "user.lastname": 1,
           'user.profilePicture': 1,
           'user.coverPicture': 1

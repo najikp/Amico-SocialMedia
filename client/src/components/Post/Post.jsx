@@ -105,7 +105,7 @@ const Post = ({ data, setRefresh }) => {
             alt=""
           />
           <span>
-            <b>{data.username}</b>
+            <b>{data.firstname} {data.lastname}</b>
           </span>
         </div>
         <div className="optionSide">
