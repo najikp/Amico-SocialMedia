@@ -1,0 +1,57 @@
+
+.Admin{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.main{
+    display: flex;
+}
+
+.navbar{
+    height: 5rem;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+.navbar>h4{
+    color:var(--orange);
+}
+
+.leftSide{
+    background-color:rgb(246, 246, 246);
+    display: flex;
+    width: 14rem;
+    height: 100vh;
+    flex-direction: column;
+    border: .5px solid rgba(0, 0, 0, 0.562);
+}
+.leftSide>li{
+    padding-left: 1rem;
+    position: relative;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+.leftSide>li:hover{
+    background-color: rgba(223, 223, 223, 0.815);
+    border-radius: 5px;
+}
+li>img{
+    height: 2rem;
+    width: 2rem;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.log{
+    padding: .8rem;
+}

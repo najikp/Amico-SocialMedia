@@ -14,11 +14,17 @@
 --schedule: #E1AE4A;
 }
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App{
   overflow: hidden;
   color: var(--black);
   background: #f3f3f3;
-  padding: 1rem 1rem;
+  padding: 0 0;
 }
 
 .blur{

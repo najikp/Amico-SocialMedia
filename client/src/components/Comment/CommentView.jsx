@@ -51,7 +51,7 @@ const CommentView = ({ post }) => {
                   }
                   alt=""
                 />
-                <b>{value.author.username}:</b>
+                <b>{value.author.firstname} {value.author.lastname}:</b>
                 {value.comment}
                 {user._id === value.author._id && (
                   <UilTrash onClick={()=>deleteComments(value._id)} style={{ marginLeft: "auto", cursor: "pointer",width:'15px' }} />

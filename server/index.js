@@ -11,6 +11,8 @@ import CommentRoute from './Routes/CommentRoute.js';
 import ProfileRoute from './Routes/ProfileRoute.js';
 import ChatRoute from './Routes/ChatRoute.js';
 import MessageRoute from './Routes/MessageRoute.js'
+import AuthAdminRoute from './Routes/AuthAdminRoute.js';
+import AdminRoute from './Routes/AdminRoute.js'
 
 //Routes
 
@@ -52,3 +54,10 @@ app.use('/comment',CommentRoute);
 app.use('/profile',ProfileRoute);
 app.use('/chat',ChatRoute);
 app.use('/message',MessageRoute);
+
+
+
+
+//Admin
+app.use('/auth-admin',AuthAdminRoute)
+app.use('/admin',AdminRoute)

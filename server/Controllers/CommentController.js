@@ -38,7 +38,7 @@ export const createComment = async (req, res) => {
 export const getComment = async (req, res) => {
     try {
         const postId = req.params.id;
-        const comment = await commentModel.find({ postId }).populate({ path: 'author', select: { "username": 1, "profilePicture": 1 } }).sort({ createdAt: -1 });
+        const comment = await commentModel.find({ postId }).populate({ path: 'author', select: { "firstname": 1,"lastname":1, "profilePicture": 1 } }).sort({ createdAt: -1 });
         res.status(200).json(comment)
     } catch (error) {
         console.log(error);

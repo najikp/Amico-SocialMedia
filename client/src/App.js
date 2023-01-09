@@ -5,9 +5,13 @@ import Profile from "./pages/home/Profile/Profile";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Chat from "./pages/Chat/Chat";
+import AdminAuth from "./pages/Auth/AdminAuth";
+import Forgot from "./pages/Auth/Forgot";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData);
+  const admin = useSelector((state) => state.adminAuthReducer.adminAuthData);
   return (
     <div className="App">
       <div className="blur" style={{ top: "-18%", right: "0" }}></div>
@@ -16,6 +20,10 @@ function App() {
         <Route
           path="/"
           element={user ? <Navigate to="home" /> : <Navigate to="auth" />}
+        />
+        <Route
+          path="/auth/forgot-pass"
+          element={user ? <Navigate to='home' /> : <Forgot />}
         />
 
         <Route
@@ -32,7 +40,18 @@ function App() {
           path="/profile/:id"
           element={user ? <Profile /> : <Navigate to="../auth" />}
         />
-        <Route path="/chat" element={user? <Chat/> : <Navigate to='../auth'/>}/>
+        <Route path="/chat" element={user ? <Chat /> : <Navigate to='../auth' />} />
+
+        {/* Admin Routes */}
+
+        <Route path="/auth-admin"
+          element={admin ? <Navigate to='/admin' /> : <AdminAuth />}
+        />
+
+        <Route
+          path="/admin"
+          element={admin ? <Admin /> : <Navigate to='/auth-admin' />}
+        />
       </Routes>
     </div>
   );

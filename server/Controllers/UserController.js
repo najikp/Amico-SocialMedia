@@ -58,7 +58,7 @@ export const updateUser = async (req, res) => {
         process.env.JWT_KEY,
         { expiresIn: "1h" }
       );
-      res.status(200).json({user,token});
+      res.status(200).json({ user, token });
     } catch (error) {
       res.status(500).json(error);
     }
@@ -102,12 +102,12 @@ export const followUser = async (req, res) => {
       if (!followUser.followers.includes(_id)) {
         await followUser.updateOne({ $push: { followers: _id } });
         await followingUser.updateOne({ $push: { following: id } });
-        const user=await UserModel.findById(_id)
-        const data={
-          content:`${user.firstname} ${user.lastname} started following you`,
-          time:new Date()
+        const user = await UserModel.findById(_id)
+        const data = {
+          content: `${user.firstname} ${user.lastname} started following you`,
+          time: new Date()
         }
-        await UserModel.findByIdAndUpdate(id,{ $push: { notifications: data } })
+        await UserModel.findByIdAndUpdate(id, { $push: { notifications: data } })
         res.status(200).json("User followed!");
       } else {
         res.status(403).json("User is Already followed by you");
@@ -146,11 +146,11 @@ export const unFollowUser = async (req, res) => {
 };
 
 //clear notifications
-export const clearNotifications=async(req,res)=>{
-  const userId=req.params.id;
+export const clearNotifications = async (req, res) => {
+  const userId = req.params.id;
   try {
-    const data=[];
-    await UserModel.findByIdAndUpdate({_id:userId},{notifications:data})
+    const data = [];
+    await UserModel.findByIdAndUpdate({ _id: userId }, { notifications: data })
     res.status(200).json('Notications cleared');
   } catch (error) {
     console.log(error)
@@ -173,3 +173,4 @@ export const searchUser = async (req, res) => {
     console.log(err);
   }
 };
+

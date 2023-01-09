@@ -11,7 +11,6 @@ export const sendOtp = async (req, res) => {
     const { username } = req.body;
 
 
-    console.log(req.body, 'fisrt emailllll');
     const emailExist = await UserModel.findOne({ username: username });
 
     if (emailExist) {
@@ -22,7 +21,6 @@ export const sendOtp = async (req, res) => {
     } else {
       otpSend(username)
         .then((response) => {
-          console.log(response, 'kkkkkkkkkkkkkkkkkkkk');
           res.status(200).send({
             message: "OTP sent",
             response: response,
@@ -36,6 +34,30 @@ export const sendOtp = async (req, res) => {
     res.status(500).send({ success: false });
   }
 };
+
+
+//OTP for Forgot Password
+export const forgotOtp = async (req, res) => {
+  try {
+    const { username } = req.body;
+
+
+    otpSend(username)
+      .then((response) => {
+        res.status(200).send({
+          message: "OTP sent",
+          response: response,
+          success: true
+        });
+      })
+      .catch((err) => console.log("ERROR", err));
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ success: false });
+  }
+};
+
 
 //Registering a new User
 export const registerUser = async (req, res) => {
@@ -99,3 +121,34 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+//forgot password
+export const forgotPassword = async (req, res) => {
+  console.log(req.body.password, req.body.username, 'is the bodydata')
+  const username = req.body.username;
+  let password = req.body.password;
+  try {
+    const user = await UserModel.findOne({ username: username });
+
+    if (user) {
+      const isMatch = await bcrypt.compare(password, user.password);
+      console.log(isMatch)
+      const salt = await bcrypt.genSalt(10);
+      const hashedPass = await bcrypt.hash(password, salt);
+      password = hashedPass;
+      console.log(password, 'is the password')
+      if (isMatch) {
+        res.status(401).json('Should not allow old Password')
+      } else {
+        await UserModel.findByIdAndUpdate({ _id: user._id }, { password: password });
+        res.status(201).json('Password Changed Successfully')
+      }
+    } else {
+      res.status(401).json('Something went Wrong')
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error)
+  }
+}
