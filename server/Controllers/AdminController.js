@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import AdminModel from "../Models/adminModel.js";
+import UserModel from "../Models/userModel.js";
 
 
 
@@ -34,3 +35,31 @@ export const adminLogin = async (req, res) => {
       res.status(500).json({ message: error.message });
     }
   };
+
+
+//Block Users
+
+export const blockUser=async(req,res)=>{
+  const id=req.params.id;
+  try {
+    await UserModel.findByIdAndUpdate(id,{isBlocked:true})
+    res.status(202).json('User Blocked')
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error)
+  }
+}
+
+
+//Activate Users
+
+export const activateUser=async(req,res)=>{
+  const id =req.params.id;
+  try {
+    await UserModel.findByIdAndUpdate(id,{isBlocked:false});
+    res.status(200).json('User Activated')
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error)
+  }
+}

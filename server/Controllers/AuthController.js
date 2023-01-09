@@ -99,6 +99,7 @@ export const loginUser = async (req, res) => {
     const user = await UserModel.findOne({ username: username });
 
     if (user) {
+      
       const validity = await bcrypt.compare(password, user.password);
 
       if (!validity) {
@@ -112,7 +113,12 @@ export const loginUser = async (req, res) => {
           process.env.JWT_KEY,
           { expiresIn: "1h" }
         );
-        res.status(200).json({ user, token })
+
+        if(!user.isBlocked){
+          res.status(200).json({ user, token })
+        }else{
+          res.status(401).json("Your Access is Denied")
+        }
       }
     } else {
       res.status(404).json("User does not exists");

@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={user ? <Navigate to="home" /> : <Navigate to="auth" />}
+          element={user&&!user.isBlocked ? <Navigate to="home" /> : <Navigate to="auth" />}
         />
         <Route
           path="/auth/forgot-pass"
@@ -28,17 +28,17 @@ function App() {
 
         <Route
           path="/home"
-          element={user ? <Home /> : <Navigate to="../auth" />}
+          element={user&&!user.isBlocked ? <Home /> : <Navigate to="../auth" />}
         />
 
         <Route
           path="/auth"
-          element={user ? <Navigate to="../home" /> : <Auth />}
+          element={user&&!user.isBlocked ? <Navigate to="../home" /> : <Auth />}
         />
 
         <Route
           path="/profile/:id"
-          element={user ? <Profile /> : <Navigate to="../auth" />}
+          element={user&&!user.isBlocked ? <Profile /> : <Navigate to="../auth" />}
         />
         <Route path="/chat" element={user ? <Chat /> : <Navigate to='../auth' />} />
 

@@ -3,6 +3,7 @@ import "./AdminAuth.css";
 import Logo from "../../img/logo.png";
 import { forgotOtp, forgotPassword, sendOtp } from "../../api/AuthRequest";
 import { toast, Toaster } from "react-hot-toast";
+import { Navigate } from "react-router-dom";
 
 const Forgot = () => {
   const [data, setData] = useState({});
@@ -55,9 +56,7 @@ const Forgot = () => {
       password:password
     }
       setFormData(response);
-      const res = await forgotPassword(response)
-      toast.error(res.response.data)
-      console.log(res,'is the response');
+      const res = await forgotPassword(response)      
   
   }
   return (

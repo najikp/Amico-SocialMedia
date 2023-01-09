@@ -18,6 +18,9 @@
     justify-content: space-between;
     padding: 1.5rem;
 }
+.navbar>button{
+    position: relative;
+}
 
 .navbar>h4{
     color:var(--orange);
