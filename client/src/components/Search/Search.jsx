@@ -15,7 +15,7 @@ const Search = ({ searchKey }) => {
               src={
                 user?.profilePicture
                   ? serverPublic + user.profilePicture
-                  : serverPublic + "defaultProfile.jpg"
+                  : serverPublic + "defaultProfile.png"
               }
               alt=""
             />

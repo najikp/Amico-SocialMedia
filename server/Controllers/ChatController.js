@@ -4,13 +4,30 @@ import ChatModel from '../Models/chatModel.js';
 
 //create chat
 export const createChat=async(req,res)=>{
+    let flag=0;
     const newChat=new ChatModel({
         members:[req.body.senderId,req.body.receiverId]
     });
+    const response=await ChatModel.find()
+    response.map((value)=>{
+        console.log(value.members)
+        const arr1=value.members;
+        const arr2=[req.body.senderId,req.body.receiverId]
+        console.log(arr1[0]===arr2[0]&&arr1[1]===arr2[1])
+        if(arr1[0]===arr2[0]&&arr1[1]===arr2[1]){
+            flag=1;
+        }
+        
+    })
 
     try {
-        const result=await newChat.save();
-        res.status(200).json(result)
+        if(flag===0){
+            const result=await newChat.save();
+            res.status(200).json('Chat room Created, Please click on message icon to chat')
+        }else{
+            console.log('click one to message icone')
+            res.status(200).json('Click on Message icon to chat')
+        }
     } catch (error) {
         res.status(500).json(error)
     }

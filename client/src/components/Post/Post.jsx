@@ -100,7 +100,7 @@ const Post = ({ data, setRefresh }) => {
             src={
               data.profilePicture
                 ? serverPublic + data.profilePicture
-                : serverPublic + "defaultProfile.jpg"
+                : serverPublic + "defaultProfile.png"
             }
             alt=""
           />

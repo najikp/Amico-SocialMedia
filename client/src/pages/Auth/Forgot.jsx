@@ -56,8 +56,9 @@ const Forgot = () => {
       password:password
     }
       setFormData(response);
-      const res = await forgotPassword(response)      
-  
+      const res = await forgotPassword(formData)
+      res.status==201?toast.success(res.data):toast.error(res.response.data)      
+      console.log(res)
   }
   return (
     <div className="Auth">

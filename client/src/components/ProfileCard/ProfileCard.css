@@ -93,3 +93,11 @@
     margin-bottom: 1rem;
     cursor: pointer;
 }
+.messageButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.msg-btn{
+    padding:.5rem;
+}

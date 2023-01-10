@@ -124,7 +124,7 @@ const PostShare = () => {
         src={
           user.profilePicture
             ? serverPublic + user.profilePicture
-            : serverPublic + "defaultProfile.jpg"
+            : serverPublic + "defaultProfile.png"
         }
         alt=""
       />
@@ -156,10 +156,10 @@ const PostShare = () => {
             <UilLocationPoint />
             Location
           </div> */}
-          <div className="option" style={{ color: "var(--schedule)" }}>
+          {/* <div className="option" style={{ color: "var(--schedule)" }}>
             <UilSchedule />
             Schedule
-          </div>
+          </div> */}
           <button
             onClick={handleSubmit}
             disabled={loading}

@@ -93,7 +93,7 @@ const ChatBox = ({ chat, currentUser,setSendMessage,receiveMessage }) => {
                       ? process.env.REACT_APP_PUBLIC_FOLDER +
                         userData.profilePicture
                       : process.env.REACT_APP_PUBLIC_FOLDER +
-                        "defaultProfile.jpg"
+                        "defaultProfile.png"
                   }
                   alt=""
                   className="followerImage"

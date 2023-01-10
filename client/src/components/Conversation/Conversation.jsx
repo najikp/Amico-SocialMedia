@@ -28,7 +28,7 @@ const Conversation = ({ data, currentUserId, online }) => {
             src={
               userData?.profilePicture
                 ? process.env.REACT_APP_PUBLIC_FOLDER + userData.profilePicture
-                : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.jpg"
+                : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.png"
             }
             alt=""
             className="followerImage"

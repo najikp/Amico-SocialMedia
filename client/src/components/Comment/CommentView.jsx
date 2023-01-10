@@ -47,7 +47,7 @@ const CommentView = ({ post }) => {
                   src={
                     value.author.profilePicture
                       ? serverPublic + value.author.profilePicture
-                      : serverPublic + "defaultProfile.jpg"
+                      : serverPublic + "defaultProfile.png"
                   }
                   alt=""
                 />

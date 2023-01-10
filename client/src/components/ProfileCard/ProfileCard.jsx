@@ -4,6 +4,9 @@ import "./ProfileCard.css";
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getUser } from "../../api/UserRequest";
+import { MessageOutlined } from "@ant-design/icons";
+import { createChat } from "../../api/ChatRequests";
+import { toast } from "react-hot-toast";
 
 const ProfileCard = ({ location }) => {
   const [userData,setUserData]=useState({});
@@ -12,6 +15,11 @@ const ProfileCard = ({ location }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const params=useParams();
   const id=params.id;
+
+  const chatData={
+    senderId:user._id,
+    receiverId:id
+  }
 
 
   //getting the userDetails
@@ -22,9 +30,13 @@ const ProfileCard = ({ location }) => {
     }
     fetchUser()
   },[id])
-
-
-
+  const following=user?.following?.includes(id)
+  
+  const handleMessage=async(data)=>{
+    const response=await createChat(data)
+    console.log(response.data,'is the response')
+    toast.success(response.data)
+  }
   
   return (
     <>
@@ -35,7 +47,7 @@ const ProfileCard = ({ location }) => {
           src={
             user.coverPicture
               ? serverPublic + user.coverPicture
-              : serverPublic + "defaultCover.jpg"
+              : serverPublic + "defaultCover.png"
           }
           alt=""
         />
@@ -43,7 +55,7 @@ const ProfileCard = ({ location }) => {
           src={
             user.profilePicture
               ? serverPublic + user.profilePicture
-              : serverPublic + "defaultProfile.jpg"
+              : serverPublic + "defaultProfile.png"
           }
           alt=""
         />
@@ -104,7 +116,7 @@ const ProfileCard = ({ location }) => {
           src={
             userData.coverPicture
               ? serverPublic + userData.coverPicture
-              : serverPublic + "defaultCover.jpg"
+              : serverPublic + "defaultCover.png"
           }
           alt=""
         />
@@ -112,7 +124,7 @@ const ProfileCard = ({ location }) => {
           src={
             userData.profilePicture
               ? serverPublic + userData.profilePicture
-              : serverPublic + "defaultProfile.jpg"
+              : serverPublic + "defaultProfile.png"
           }
           alt=""
         />
@@ -125,6 +137,10 @@ const ProfileCard = ({ location }) => {
           {userData.worksAt ? "Working at " + userData.worksAt : "Write about You.."}
         </span>
       </div>
+
+      {following&&<div className="messageButton">
+        <button onClick={()=>handleMessage(chatData)} className="button msg-btn fc-button UnfollowButton"><MessageOutlined /> Message</button>
+      </div>}
 
       <div className="followStatus">
         <hr />
