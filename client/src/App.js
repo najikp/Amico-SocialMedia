@@ -8,6 +8,7 @@ import Chat from "./pages/Chat/Chat";
 import AdminAuth from "./pages/Auth/AdminAuth";
 import Forgot from "./pages/Auth/Forgot";
 import Admin from "./pages/Admin/Admin";
+import React  from 'react';
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData);

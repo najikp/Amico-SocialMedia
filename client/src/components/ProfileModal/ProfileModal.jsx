@@ -1,9 +1,11 @@
+import React  from 'react';
 import { Modal, useMantineTheme } from "@mantine/core";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { uploadImage } from "../../actions/uploadAction";
 import { updateUser } from "../../actions/userAction";
+
 
 function ProfileModal({ modalOpened, setModalOpened, data }) {
   const theme = useMantineTheme();
@@ -14,6 +16,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
   const [coverImage, setCoverImage] = useState(null);
   const dispatch = useDispatch();
   const param = useParams();
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

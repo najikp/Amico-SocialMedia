@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import AdminModel from "../Models/adminModel.js";
 import UserModel from "../Models/userModel.js";
+import PostModel from '../Models/postModel.js'
 
 
 
@@ -58,6 +59,18 @@ export const activateUser=async(req,res)=>{
   try {
     await UserModel.findByIdAndUpdate(id,{isBlocked:false});
     res.status(200).json('User Activated')
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error)
+  }
+}
+
+//Get all posts
+export const getAllPosts=async(req,res)=>{
+  try {
+    const response=await PostModel.find().sort({createdAt:-1}).populate('userId')
+    console.log(response.report);
+    res.status(200).json(response)
   } catch (error) {
     console.log(error);
     res.status(500).json(error)
