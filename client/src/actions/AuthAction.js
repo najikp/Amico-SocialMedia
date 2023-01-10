@@ -41,3 +41,7 @@ export const adminLogin = (FormData) => async (dispatch) => {
     toast.error(error.response.data)
   }
 };
+
+export const adminLogout=()=>async(dispatch)=>{
+  dispatch({type:'ADMIN_LOGOUT'});
+}

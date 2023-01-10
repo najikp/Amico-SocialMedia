@@ -1,16 +1,22 @@
 import React from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { adminLogout } from '../../actions/AuthAction';
 import PostList from '../../components/PostList/PostList';
 import UsersList from '../../components/UsersList/UsersList';
 import './Admin.css'
 
 const Admin = () => {
     const [post,setPost]=useState(false)
+    const dispatch=useDispatch()
+    const handleLogout=()=>{
+        dispatch(adminLogout())
+    }
   return (
     <div className="Admin">
         <div className="navbar">
             <h4>Amico - Admin Panel</h4>
-            <button className='button log'>Logout</button>
+            <button onClick={handleLogout} className='button log'>Logout</button>
         </div>
         <div className='main'>
 

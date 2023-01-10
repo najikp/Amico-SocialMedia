@@ -13,6 +13,10 @@ const adminAuthReducer = (
         case "ADMIN_AUTH_FAIL":
             return { ...state, loading: false, error: true };
 
+        case "ADMIN_LOGOUT":
+            localStorage.clear();
+            return { ...state, adminAuthData: null, loading: false, error: false };
+
         default:
             return state;
     }

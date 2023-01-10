@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import AdminModel from "../Models/adminModel.js";
 import UserModel from "../Models/userModel.js";
 import PostModel from '../Models/postModel.js'
+import postModel from "../Models/postModel.js";
 
 
 
@@ -68,11 +69,24 @@ export const activateUser=async(req,res)=>{
 //Get all posts
 export const getAllPosts=async(req,res)=>{
   try {
-    const response=await PostModel.find().sort({createdAt:-1}).populate('userId')
-    console.log(response.report);
+    const response=await PostModel.find().sort({createdAt:-1}).populate('userId').populate('report')
     res.status(200).json(response)
   } catch (error) {
     console.log(error);
+    res.status(500).json(error)
+  }
+}
+
+
+//delete reported post manually
+export const deleteReported=async(req,res)=>{
+  const postId=req.params.id;
+  try {
+   const response = await postModel.findByIdAndDelete(postId)
+   console.log(response);
+   res.status(200).json('Removed')
+  } catch (error) {
+    console.log(error)
     res.status(500).json(error)
   }
 }
