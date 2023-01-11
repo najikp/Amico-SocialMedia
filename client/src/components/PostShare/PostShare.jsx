@@ -67,7 +67,7 @@ const PostShare = () => {
         )
       ) {
         return toast("only support .png, .jpg, and .webp files", {
-          icon: "⌛",
+          icon: "⚠",
           style: {
             borderRadius: "10px",
             background: "#333",
@@ -92,7 +92,7 @@ const PostShare = () => {
     } else if (video) {
       if (!(video.type === "video/mp4" || video.type === "video/mkv")) {
         return toast("only support .mp4 and .mkv files", {
-          icon: "⌛",
+          icon: "⚠",
           style: {
             borderRadius: "10px",
             background: "#333",
@@ -113,8 +113,12 @@ const PostShare = () => {
         console.log(error);
       }
     } else {
-      dispatch(uploadPost(newPost));
-      reset();
+      if(desc.current.value<=' '*100000){
+        toast.error('There is no content')
+      }else{
+        dispatch(uploadPost(newPost));
+        reset();
+      }
     }
   };
 

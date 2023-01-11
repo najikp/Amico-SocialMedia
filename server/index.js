@@ -14,6 +14,9 @@ import MessageRoute from './Routes/MessageRoute.js'
 import AuthAdminRoute from './Routes/AuthAdminRoute.js';
 import AdminRoute from './Routes/AdminRoute.js'
 
+import {createServer} from 'http';
+import {Server} from 'socket.io'
+
 //Routes
 
 const app = express();
@@ -21,11 +24,12 @@ const app = express();
 //To serve images for public
 app.use(express.static("public"));
 app.use("/images", express.static("images"));
+app.use("/videos", express.static("videos"));
 
 //Middleware
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+app.use(cors({origin:["https://amico.netlify.app","http://localhost:3000"]}));
 
 dotenv.config();
 
@@ -35,11 +39,8 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() =>
-    app.listen(process.env.PORT, () =>
-      console.log(`Listening at ${process.env.PORT}`)
-    )
-  )
-  .catch((error) => {
+    console.log("DATABASE CONNECTED")
+    ).catch((error) => {
     console.log(error);
   });
 
@@ -61,3 +62,59 @@ app.use('/message',MessageRoute);
 //Admin
 app.use('/auth-admin',AuthAdminRoute)
 app.use('/admin',AdminRoute)
+
+
+
+
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
+  cors: {
+    origin: ["http://localhost:3000","https://amico.netlify.app"],
+  },
+});
+
+
+
+let activeUsers = [];
+
+io.on('connection', (socket) => {
+
+    //add new User
+    socket.on('new-user-add', (newUserId) => {
+        //if user is not added previously
+        if (!activeUsers.some((user) => user.userId === newUserId)) {
+            activeUsers.push({
+                userId: newUserId,
+                socketId: socket.id
+            })
+        }
+        console.log('Connected Users',activeUsers)
+        io.emit('get-users', activeUsers)
+    })
+
+
+    //send Message
+    socket.on('send-message',(data)=>{
+        const {receiverId}=data;
+        const user=activeUsers.find((user)=>user.userId===receiverId);
+        console.log('Sending from socket to: ',receiverId);
+        console.log('Data',data);
+        if(user){
+            io.to(user.socketId).emit('receive-message',data)
+        }
+    })
+
+    socket.on('disconnect', () => {
+        activeUsers = activeUsers.filter((user) => user.socketId !== socket.id)
+        console.log('User Disconnected',activeUsers)
+        io.emit('get-users', activeUsers)
+
+    })
+})
+
+
+
+httpServer.listen(process.env.PORT, () =>
+      console.log(`Listening at ${process.env.PORT}`)
+)

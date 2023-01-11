@@ -139,7 +139,9 @@ const ProfileCard = ({ location }) => {
       </div>
 
       {following&&<div className="messageButton">
-        <button onClick={()=>handleMessage(chatData)} className="button msg-btn fc-button UnfollowButton"><MessageOutlined /> Message</button>
+        <Link style={{textDecoration:'none'}} onClick={()=>handleMessage(chatData)} to='/chat'>
+        <button  className="button msg-btn fc-button UnfollowButton"><MessageOutlined /> Message</button>
+        </Link>
       </div>}
 
       <div className="followStatus">

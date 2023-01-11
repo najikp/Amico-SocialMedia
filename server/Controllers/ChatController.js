@@ -10,10 +10,8 @@ export const createChat=async(req,res)=>{
     });
     const response=await ChatModel.find()
     response.map((value)=>{
-        console.log(value.members)
         const arr1=value.members;
         const arr2=[req.body.senderId,req.body.receiverId]
-        console.log(arr1[0]===arr2[0]&&arr1[1]===arr2[1])
         if(arr1[0]===arr2[0]&&arr1[1]===arr2[1]){
             flag=1;
         }

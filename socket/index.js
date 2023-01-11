@@ -4,6 +4,12 @@ const io = require('socket.io')(8800, {
     }
 })
 
+const io = new Server(httpServer, {
+    cors: {
+      origin: ["https://hash-tags.netlify.app", "http://localhost:3000"],
+    },
+  });
+
 let activeUsers = [];
 
 io.on('connection', (socket) => {
