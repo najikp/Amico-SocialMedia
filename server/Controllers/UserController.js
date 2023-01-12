@@ -170,6 +170,7 @@ export const searchUser = async (req, res) => {
     }).select({ username: 1, firstname: 1, lastname: 1, profilePicture: 1 });
     res.status(200).json(users);
   } catch (err) {
+    res.status(404).json({err,message:'Not found'});
     console.log(err);
   }
 };

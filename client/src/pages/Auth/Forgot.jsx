@@ -57,7 +57,7 @@ const Forgot = () => {
     }
       setFormData(response);
       const res = await forgotPassword(formData)
-      res.status==201?toast.success(res.data):toast.error(res.response.data)      
+      toast.success(res.data)      
       console.log(res)
   }
   return (
