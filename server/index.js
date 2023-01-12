@@ -20,6 +20,10 @@ import {Server} from 'socket.io'
 //Routes
 
 const app = express();
+app.use(cors({
+  origin:["https://amico.netlify.app","http://localhost:3000"],
+  credentials:true,
+}));
 
 //To serve images for public
 app.use(express.static("public"));
@@ -29,7 +33,6 @@ app.use("/videos", express.static("videos"));
 //Middleware
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors({origin:["https://amico.netlify.app","http://localhost:3000"]}));
 
 dotenv.config();
 

@@ -4,6 +4,15 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 const token = localStorage.getItem("token");
 
+const API = axios.create({ baseURL:process.env.REACT_APP_BASE_URL });
+
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem('profile')) {
+    req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
+  }
+  return req;
+});
+
 const useSearchUsers = (query) => {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
@@ -18,7 +27,7 @@ const useSearchUsers = (query) => {
     setLoading(true);
     setError(false);
     let cancel;
-    axios({
+    API({
       method: "GET",
       url: "/user/search",
       params: { name: query },

@@ -9,7 +9,7 @@ const Search = ({ searchKey }) => {
   return (
     users.length > 0 && (
       <div className="search-result">
-        {users.map((user) => (
+        {users?.map((user) => (
           <div key={user._id} className="search-items">
             <img
               src={

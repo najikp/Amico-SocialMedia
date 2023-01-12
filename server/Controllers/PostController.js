@@ -139,7 +139,7 @@ export const likePost = async (req, res) => {
 //Get Timeline Posts
 export const getTimelinePosts = async (req, res) => {
   const userId = req.params.id;
-  const LIMIT = 10;
+  const LIMIT = 100;
   const skip = Number(req.query.skip) || 0;
 
   try {

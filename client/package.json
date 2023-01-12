@@ -1,7 +1,9 @@
 {
   "name": "starter",
   "version": "0.1.0",
+  "proxy":"http://localhost:5000",
   "private": true,
+
   "dependencies": {
     "@ant-design/icons": "^5.0.0",
     "@emotion/react": "^11.10.5",
