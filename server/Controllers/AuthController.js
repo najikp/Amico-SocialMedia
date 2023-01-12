@@ -145,13 +145,13 @@ export const forgotPassword = async (req, res) => {
       password = hashedPass;
       console.log(password, 'is the password')
       if (isMatch) {
-        res.status(401).json('Should not allow old Password')
+        res.status(202).json('Should not allow old Password')
       } else {
         await UserModel.findByIdAndUpdate({ _id: user._id }, { password: password });
         res.status(201).json('Password Changed Successfully')
       }
     } else {
-      res.status(401).json('Something went Wrong')
+      res.status(202).json('Something went Wrong')
     }
   } catch (error) {
     console.log(error);

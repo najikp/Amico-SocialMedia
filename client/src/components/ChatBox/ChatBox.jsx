@@ -11,6 +11,7 @@ const ChatBox = ({ chat, currentUser,setSendMessage,receiveMessage }) => {
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage,setNewMessage]=useState('');
+  const [disable,setDisable]=useState(false)
   const scroll=useRef();
 
   useEffect(()=>{
@@ -50,6 +51,11 @@ const ChatBox = ({ chat, currentUser,setSendMessage,receiveMessage }) => {
 
   const handleChange=(newMessage)=>{
     setNewMessage(newMessage)
+    if(newMessage==' '*1000){
+      setDisable(true)
+    }else{
+      setDisable(false)
+    }
   }
 
   const handleSend=async(e)=>{
@@ -132,7 +138,7 @@ const ChatBox = ({ chat, currentUser,setSendMessage,receiveMessage }) => {
             value={newMessage}
             onChange={handleChange}
             />
-            <div className="send-button button" onClick={handleSend}>Send</div>
+            {disable? <button className="button send-button" style={{padding:'1rem'}} disabled>Send</button>:<div className="send-button button" style={{padding:'1rem'}} onClick={handleSend}>Send</div>}
           </div>
         </>):(
           <span className="chatbox-empty-message">Tap on Chat to start Conversation...</span>

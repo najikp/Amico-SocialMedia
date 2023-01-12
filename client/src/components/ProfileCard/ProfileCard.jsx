@@ -30,7 +30,7 @@ const ProfileCard = ({ location }) => {
     }
     fetchUser()
   },[id])
-  const following=user?.following?.includes(id)
+  const following=userData?.followers?.includes(user._id)
   
   const handleMessage=async(data)=>{
     const response=await createChat(data)
