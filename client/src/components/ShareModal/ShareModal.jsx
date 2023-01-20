@@ -1,5 +1,6 @@
 import { Modal, useMantineTheme } from "@mantine/core";
 import PostShare from "../PostShare/PostShare";
+import React from 'react'
 
 function ShareModal({ modalOpened, setModalOpened }) {
   const theme = useMantineTheme();
